@@ -1,0 +1,26 @@
+
+public class exception {
+	
+	static void check() throws ArithmeticException
+	{
+		
+		int a=4,b=0;
+			int c = a/b;
+			System.out.println("denominator is zero");
+
+		
+	}
+	
+	public static void main(String[] args) {
+		try
+		{
+			check();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("exception is\t"+ae);
+		}
+		
+	}
+
+}
