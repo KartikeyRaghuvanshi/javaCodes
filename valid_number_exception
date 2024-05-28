@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+class NotEqalToException extends Exception
+{
+    NotEqalToException(String msg)
+    {
+        super(msg);
+    }
+}
+
+public class userException1 {
+    public static void main(String[] args) {
+        try {
+            double num;
+            Scanner sc = new Scanner(System.in);
+            System.out.println("enter a number:");
+            num = sc.nextDouble();
+            if(num==3.14)
+            {
+                System.out.println("valid number");
+            }
+            else
+                throw new NotEqalToException("you are not a valid voter");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
