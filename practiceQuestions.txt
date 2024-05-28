@@ -1,0 +1,5 @@
+how the inner class enclosing the members of inner class
+
+ques-> write a program to demonstrate the use of exception handling
+
+ques-> wap that uses a user defined exception called not equal exception that is thrown when a float value is  not equal to 3.14
