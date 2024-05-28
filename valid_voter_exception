@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+class AgeException extends Exception
+{
+	AgeException(String msg)
+	{
+		super(msg);
+	}
+}
+public class userException {
+	public static void main(String[] args) {
+		try {
+			
+			int age;
+			Scanner sc= new Scanner(System.in);
+			System.out.println("enter age value:");
+			age = sc.nextInt();
+			if(age>=18)
+			{
+				System.out.println("valid voter");
+			}
+			else
+				throw new AgeException("you are not a valid voter");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+}
