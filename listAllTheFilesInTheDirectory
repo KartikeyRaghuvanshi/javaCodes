@@ -1,0 +1,29 @@
+import java.io.File;
+
+public class listFiles {
+
+	public static void main(String[] args) {
+		// initialize string null so that we can define it later the type of file.
+		String type = null;
+		
+		//creating object for all the file in the given directory
+		File f = new File("C:\\Users\\student\\Desktop\\Java");  //give path in double quotes
+		
+		//adding all the objects in the files array so that we can retrieve them
+		File files[]= f.listFiles();
+		
+		//using for each loop to access all the file name
+		for(File f1:files) {
+			//using isFile() to check the selected folder is file or directory and assigning its type
+			if(f1.isFile())
+				type = "FILE";
+			else
+				type = "Directory";
+				
+			// printing output
+			System.out.println(f1.getName()+"\t\t"+f1.length()+"\t\t"+type);
+		}
+
+	}
+
+}
