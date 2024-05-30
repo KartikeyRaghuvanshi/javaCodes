@@ -1,0 +1,34 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+public class fileCopy {
+
+	public static void main(String[] args) throws IOException {
+		FileReader fr1= null;
+		FileWriter fw2 = null;
+		int ch;
+		File f1 = new File("src\\listFiles.java");
+		File f2 = new File("C:\\Users\\student\\Desktop\\Java\\paste.txt");
+		
+		try {
+			fr1 = new FileReader(f1);
+			fw2 = new FileWriter(f2);
+			
+          while ((ch = fr1.read()) != -1) {
+              fw2.write(ch);
+          }
+          System.out.println("successfully copied");
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally{
+			fr1.close();
+			fw2.close();
+		}
+
+	}
+
+}
