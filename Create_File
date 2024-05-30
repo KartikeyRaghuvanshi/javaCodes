@@ -1,0 +1,21 @@
+import java.io.*;
+public class createFile {
+
+	public static void main(String[] args) {
+		try {
+			File f = new File("C:\\Users\\student\\Desktop\\Java\\first.txt");
+			if(f.createNewFile()) {
+				System.out.println("created successfully");
+				System.out.println(+f.getTotalSpace());
+			}
+			else
+				System.out.println("no file created");
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
