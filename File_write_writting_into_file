@@ -1,0 +1,25 @@
+//import java.io.Writer;
+import java.io.FileWriter;
+import java.io.IOException;
+public class fileWrite {
+
+	public static void main(String[] args) {
+		String line = "this is kartikey raghuvanshi from mca section 'b";
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter("C:\\Users\\student\\Desktop\\Java\\first.txt");
+			fw.write(line);
+			System.out.print("successfully written");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				fw.close();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}
