@@ -30,3 +30,106 @@ public class multithreading {
 	}
 
 }
+
+
+
+
+
+//-------------------------------------------------------------------------------- new code
+package polymorphism;
+class C extends Thread{
+	public void run(){
+		//System.out.println("hii");
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("hii");
+			try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+		}
+	}
+}
+class B extends Thread{
+	public void run(){
+		//System.out.println("hello");
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("hello");
+		}
+	}
+}
+public class multithreading {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		C obj1 = new C();
+		B obj2 = new B();
+//		obj1.start();
+//		System.out.println("bye");
+//		obj2.start();
+		obj1.start();
+		obj2.start();
+		//System.out.println(obj1.isAlive());
+		//obj1.join(); //this join method tells compiler that below main method line should wait until given object should be get executed
+		//obj2.join();
+		//System.out.println(obj1.isAlive());
+		System.out.println("bye");
+		//System.out.println(obj1.isAlive());
+	}
+}
+
+
+
+
+//------------------------------------------------------------new code
+package polymorphism;
+class C extends Thread{
+	public void run(){
+		//System.out.println("hii");
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("hii");
+			try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+		}
+	}
+}
+class B extends Thread{
+	public void run(){
+		//System.out.println("hello");
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("hello");
+			
+			try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+		}
+	}
+}
+public class multithreading {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		C obj1 = new C();
+		B obj2 = new B();
+//		obj1.start();
+//		System.out.println("bye");
+//		obj2.start();
+		obj1.start();
+		obj2.start();
+		//System.out.println(obj1.isAlive());
+		//obj1.join(); //this join method tells compiler that below main method line should wait until given object should be get executed
+		//obj2.join();
+		//System.out.println(obj1.isAlive());
+		//System.out.println("bye");
+		//System.out.println(obj1.isAlive());
+	}
+}
