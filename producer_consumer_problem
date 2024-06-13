@@ -1,0 +1,121 @@
+//class shared1 {
+//    boolean available = false;
+//    int item;
+//
+//    synchronized public void getitem() {
+//        if (!available) {
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        System.out.println("consumer " + item);
+//        available = false;
+//        notify();
+//    }
+//
+//    synchronized public void setitem(int i) {
+//        this.item = i;
+//        if (available) {
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        System.out.println("producer " + item);
+//        available = true;
+//        notify();
+//    }
+//}
+
+class shared1 {
+    boolean available = false;
+    int item;
+
+    synchronized public void getitem() {
+        while (!available) { 
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("consumer " + item);
+        available = false;
+        notify();
+    }
+
+    synchronized public void setitem(int i) {
+        while (available) { 
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.item = i;
+        System.out.println("producer " + item);
+        available = true;
+        notify();
+    }
+}
+
+class producer1 extends Thread
+{
+	shared1 s1;
+	producer1(shared1 s1)
+	{
+		this.s1 = s1;
+	}
+	public void run()
+	{
+		for(int i =1;i<=5;i++)
+		{
+			s1.setitem(i);
+		}
+	}
+}
+//class consumer1 extends Thread
+//{
+//	shared1 s1;
+//	consumer1(shared1 s1)
+//	{
+//		this.s1 = s1;
+//		this.start();
+//	}
+//	public void run()
+//	{
+//		for(int i = 1;i<=5;i++)
+//		{
+//			s1.getitem(i);
+//		}
+//	}
+//}
+class consumer1 extends Thread {
+    shared1 s1;
+
+    consumer1(shared1 s1) {
+        this.s1 = s1;
+        // Removed this.start() from constructor
+    }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            s1.getitem(); // Removed the argument
+        }
+    }
+}
+
+public class InterThread {
+
+	public static void main(String[] args) {
+		shared1 s1 = new shared1();
+		producer1 p = new producer1(s1);
+		consumer1 c = new consumer1(s1);
+		p.start();
+		c.start();
+	}
+
+}
