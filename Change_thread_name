@@ -1,0 +1,26 @@
+//wap to print the name and priority of the thread 
+//change the name of the current thread to JAVA THREAD
+
+package genericex;
+
+class B extends Thread{
+	public void run(){
+		//System.out.println("hello");		
+	}
+}
+public class printname {
+
+	public static void main(String[] args) {
+				B obj2 = new B();;
+				obj2.start();
+				Thread.currentThread().setName("JAVA THREAD");
+				System.out.println("name:"+Thread.currentThread().getName());
+				
+				System.out.println("priority:"+obj2.getPriority());				
+	}
+
+}
+
+
+
+
