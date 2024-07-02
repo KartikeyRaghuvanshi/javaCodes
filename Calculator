@@ -1,0 +1,118 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CalculatorGUI {
+    private JFrame frame;
+    private JTextField display;
+    private JButton[] numberButtons;
+    private JButton[] operatorButtons;
+    private JButton clearButton;
+    private JButton equalsButton;
+    private double result;
+    private String operator;
+
+    public CalculatorGUI() {
+        createGUI();
+    }
+
+    private void createGUI() {
+        frame = new JFrame("Calculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        display = new JTextField(20);
+        display.setEditable(false);
+        frame.add(display, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        numberButtons = new JButton[10];
+        for (int i = 0; i < 10; i++) {
+            numberButtons[i] = new JButton(String.valueOf(i));
+            numberButtons[i].addActionListener(new NumberButtonListener());
+            buttonPanel.add(numberButtons[i]);
+        }
+
+        operatorButtons = new JButton[4];
+        operatorButtons[0] = new JButton("+");
+        operatorButtons[1] = new JButton("-");
+        operatorButtons[2] = new JButton("*");
+        operatorButtons[3] = new JButton("/");
+        for (JButton button : operatorButtons) {
+            button.addActionListener(new OperatorButtonListener());
+            buttonPanel.add(button);
+        }
+
+        clearButton = new JButton("C");
+        clearButton.addActionListener(new ClearButtonListener());
+        buttonPanel.add(clearButton);
+
+        equalsButton = new JButton("=");
+        equalsButton.addActionListener(new EqualsButtonListener());
+        buttonPanel.add(equalsButton);
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private class NumberButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            String text = display.getText();
+            text += button.getText();
+            display.setText(text);
+        }
+    }
+
+    private class OperatorButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            operator = button.getText();
+            result = Double.parseDouble(display.getText());
+            display.setText("");
+        }
+    }
+
+    private class ClearButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            display.setText("");
+            result = 0;
+            operator = "";
+        }
+    }
+
+    private class EqualsButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            double num = Double.parseDouble(display.getText());
+            switch (operator) {
+                case "+":
+                    result += num;
+                    break;
+                case "-":
+                    result -= num;
+                    break;
+                case "*":
+                    result *= num;
+                    break;
+                case "/":
+                    result /= num;
+                    break;
+            }
+            display.setText(String.valueOf(result));
+            result = 0;
+            operator = "";
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new CalculatorGUI();
+            }
+        });
+    }
+}
